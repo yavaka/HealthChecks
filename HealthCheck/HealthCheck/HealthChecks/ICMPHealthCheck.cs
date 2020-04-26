@@ -6,7 +6,7 @@ using System.Net.NetworkInformation;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HealthCheck
+namespace HealthCheck.HealthChecks
 {
     public class ICMPHealthCheck : IHealthCheck
     {

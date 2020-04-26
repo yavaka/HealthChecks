@@ -1,3 +1,4 @@
+using HealthCheck.HealthChecks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +31,7 @@ namespace HealthCheck
             services.AddHealthChecks()
                 .AddCheck("ICMP_01", new ICMPHealthCheck("www.google.com", 100))
                 .AddCheck("ICMP_02", new ICMPHealthCheck("www.youtube.com", 100))
-                .AddCheck("ICMP_03", new ICMPHealthCheck("www.thiswebsitedoesnotexist:).com", 100));
+                .AddCheck("ICMP_03", new ICMPHealthCheck("www.diy.com", 100));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +58,7 @@ namespace HealthCheck
             app.UseRouting();
 
             //HealthCheck middleware
-            app.UseHealthChecks("/hc");
+            app.UseHealthChecks("/hc", new CustomHealthCheckOptions());
 
             app.UseEndpoints(endpoints =>
             {
