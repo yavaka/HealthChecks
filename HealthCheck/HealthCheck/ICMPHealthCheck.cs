@@ -10,8 +10,8 @@ namespace HealthCheck
 {
     public class ICMPHealthCheck : IHealthCheck
     {
-		private string Host = "www.doesnotexist.com";
-
+		private string Host = "www.doesssnotexist.com";
+		private int Timeout = 300;
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
 			try
@@ -22,7 +22,7 @@ namespace HealthCheck
 					switch (reply.Status)
 					{
 						case IPStatus.Success:
-							return (reply.RoundtripTime > Timeout.Infinite)
+							return (reply.RoundtripTime > Timeout)
 								? HealthCheckResult.Degraded()
 								: HealthCheckResult.Healthy();
 						
